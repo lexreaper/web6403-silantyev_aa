@@ -21,6 +21,9 @@ function even() {
  * @param {*} n
  */
 function sumTo(n) {
+    if (!Number.isInteger(n) || n < 0) {
+        throw new Error('Input must be a non-negative integer');
+    }
     let sum = 0;
     for (let i = 1; i<=n; i++)
         sum += i;
@@ -32,6 +35,9 @@ function sumTo(n) {
  * @param {*} n
  */
 function recSumTo(n) {
+    if (!Number.isInteger(n) || n < 0) {
+        throw new Error('Input must be a non-negative integer');
+    }
     if (n <= 1) {
         return n;
     }
@@ -43,7 +49,9 @@ function recSumTo(n) {
  * @param {*} n
  */
 function factorial(n) {
-    if (n < 0) return 0; // Факториал не определен для отрицательных чисел
+    if (!Number.isInteger(n) || n < 0) {
+        throw new Error('Input must be a non-negative integer');
+    }
     let result = 1;
     for (let i = 1; i <= n; i++) {
         result *= i;
@@ -64,8 +72,8 @@ function isBinary(n) {
  * @param {*} n
  */
 function fibonacci(n) {
-    if (n < 1) {
-        return 0;
+    if (!Number.isInteger(n)|| n <= 0) {
+        throw new Error('Input must be a positive integer');
     }
 
     if (n === 1 || n === 2) {
@@ -186,7 +194,8 @@ function deepEqual(firstObject, secondObject) {
         return false;
     }
     for (let key of keysFirst) {
-        if (!(key in secondObject) || !deepEqual(firstObject[key], secondObject[key])) {
+        if (!Object.hasOwn(secondObject, key) ||
+            !deepEqual(firstObject[key], secondObject[key])) {
             return false;
         }
     }
